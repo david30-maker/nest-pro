@@ -1,0 +1,26 @@
+### Get All Users
+GET http://localhost:3000/songs
+Accept: application/json
+
+### Get User Information
+GET http://localhost:3000/songs/1
+Accept: application/jsons
+
+### Create a New User
+POST http://localhost:3000/songs
+    
+{
+  "title": "Lasting Lover",    // Must be a string
+  "artists": ["Sigala"],       // Must be an array of strings
+  "releasedDate": "2022-09-22", // Must be in ISO 8601 format (YYYY-MM-DD)
+  "duration": "03:23"          // Must be in military time format (HH:MM)
+}
+
+
+### Update User Information
+PUT http://localhost:3000/songs/1
+Content-Type: application/json
+
+### Delete User
+DELETE http://localhost:3000/songs/1
+Accept: application/json

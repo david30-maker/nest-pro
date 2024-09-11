@@ -5,6 +5,10 @@ import {
   Put,
   Post,
   Body,
+  HttpException,
+  HttpStatus,
+  Param,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { SongsService } from './songs.service';
 import { CreateSongDTO } from './dto/create-song-dto';
@@ -18,12 +22,27 @@ export class SongsController {
 
   @Get()
   findAll() {
-    return this.songsService.findAll();
+    try {
+      return this.songsService.findAll();
+    } catch (e) {
+      throw new HttpException('Internal Server Error',
+        HttpStatus.INTERNAL_SERVER_ERROR,
+        {
+          cause: e.message,
+        },
+      );
+    }
   }
 
   @Get(':id')
-  findOne() {
-    return 'Fetch one song on the basis of id';
+  findOne(
+    @Param(
+      'id',
+      new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
+    )
+    id: number,
+  ) {
+    return `Fetch one song on the basis of id ${typeof id}`;
   }
 
   @Put(':id')

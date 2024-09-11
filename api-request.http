@@ -1,0 +1,28 @@
+### Get All Users
+GET http://localhost:3000/songs
+Accept: application/json
+
+
+### Get User Information
+GET http://localhost:3000/songs/1
+Accept: application/json
+
+### Create a New User
+POST http://localhost:3000/songrs
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "username": "johndoe",
+  "email": "johndoe@example.com"
+}
+
+### Update User Information
+PUT http://localhost:3000/songs/1
+Content-Type: application/json
+
+{
+  "name": "Jane Doe",
+  "username": "janedoe",
+  "email": "janedoe@example.com"
+}

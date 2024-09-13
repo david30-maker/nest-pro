@@ -5,6 +5,6 @@ import { DevConfigService } from './common/providers/DevConfigServiice';
 export class AppService {
   constructor( private devConfigService: DevConfigService ) {}
   getHello(): string {
-    return 'Hello, I am learning nestjs currently!';
+    return `Hello, I am learning nestjs currently! ${this.devConfigService.getDBHost()}`;
   }
 }

@@ -6,11 +6,18 @@ import { NestModule, MiddlewareConsumer } from '@nestjs/common';
 import { LoggerMiddleware } from './common/middleware/logger/logger.middleware';
 //import { RequestMethod } from '@nestjs/common/enums/request-method.enum';
 import { SongsController } from './songs/songs.controller';
+import { DevConfigService } from './common/providers/DevConfigServiice';
 
 @Module({
   imports: [SongsModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: DevConfigService,
+      useClass: DevConfigService,
+    },
+  ],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
